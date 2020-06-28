@@ -3,13 +3,15 @@ from template import html
 
 def application(environ, start_response):
     d = parse_qs(environ['QUERY_STRING'])
-    number1 = d.get('number1', [''])[0] or 0
-    number2 = d.get('number2', [''])[0] or 0
+    number1 = d.get('number1', [''])[0]
+    number2 = d.get('number2', [''])[0]
 
     if '' not in [number1, number2]:
         number1, number2 = int(number1), int(number2)
         Sum = number1 + number2
         Product = number1 * number2
+    else:
+	number1, number2, Sum, Product = -1, -1, -1, -1
 
     response_body = html % {
         'number1' : number1, 
