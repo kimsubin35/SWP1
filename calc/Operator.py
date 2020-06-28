@@ -6,20 +6,22 @@ def application(environ, start_response):
     number1 = d.get('number1', [''])[0]
     number2 = d.get('number2', [''])[0]
 
-    if '' not in [number1, number2]:
+    try:
         number1, number2 = int(number1), int(number2)
-        Sum = number1 + number2
-        Product = number1 * number2
+    except ValueError:
+	error = "please input digit number" 
+	Sum, Product = -1, -1
     else:
-	number1, number2, Sum, Product = -1, -1, -1, -1
-
+	error = ""
+	Sum = number1 + number2
+        Product = number1 * number2
+	
     response_body = html % {
-        'number1' : number1, 
-	'number2' : number2, 
 	'Sum' : Sum,
-        'Product' : Product
+        'Product' : Product,
+	'error' : error
    }
-
+   
     status = '200 OK'
     response_headers = [
         ('Content-Type', 'text/html'),

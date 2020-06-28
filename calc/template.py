@@ -8,8 +8,9 @@ html = b"""
             number2 = <input type="number" name="number2"><br><br>
             <input type="submit" value="operator"><br>
         </form>
-            (Sum) %(number1)d + %(number2)d = %(Sum)d<br>
-            (Product) %(number1)d * %(number2)d = %(Product)d<br>
+            (Sum) %(Sum)d<br>
+            (Product) %(Product)d<br>
+	    %(error)s<br>
     </body>
 </html>
 """
